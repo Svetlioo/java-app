@@ -114,7 +114,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          IMAGE="ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}"
+          IMAGE="ghcr.io/$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')/${{ env.IMAGE_NAME }}"
           VERSION="${{ steps.version.outputs.version }}"
           docker build -t "${IMAGE}:${VERSION}" -t "${IMAGE}:latest" .
           docker push "${IMAGE}:${VERSION}"
