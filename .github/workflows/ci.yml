@@ -148,7 +148,7 @@ jobs:
         working-directory: iac-repo
         run: |
           VERSION="${{ needs.build.outputs.version }}"
-          sed -i "s|  tag: \".*\"|  tag: \"${VERSION}\"|" helm/java-app/values-dev.yaml
+          sed -i "s|tag: \".*\"|tag: \"${VERSION}\"|" helm/java-app/values-dev.yaml
           grep 'tag:' helm/java-app/values-dev.yaml
 
       - name: Open PR and auto-merge
