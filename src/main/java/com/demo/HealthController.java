@@ -17,6 +17,7 @@ public class HealthController {
 
     @GetMapping("/")
     public Map<String, String> root() {
+        // test
         return Map.of(
             "service", "java-app",
             "environment", environment,
