@@ -172,5 +172,5 @@ jobs:
             --body "Automated deploy after tests passed. ArgoCD will sync dev namespace on merge." \
             --base dev --head "${BRANCH}")
 
-          gh pr merge "${PR}" --merge --auto --delete-branch
+          gh pr merge "${PR}" --merge --delete-branch
           echo "Merged: ${PR}" >> $GITHUB_STEP_SUMMARY
