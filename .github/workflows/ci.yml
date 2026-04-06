@@ -107,7 +107,7 @@ jobs:
         run: mvn package -DskipTests
 
       - name: Copy JAR for Docker
-        run: cp target/*.jar docker/app.jar
+        run: cp target/*.jar app.jar
 
       - name: Log in to ghcr.io
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
@@ -116,7 +116,7 @@ jobs:
         run: |
           IMAGE="ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}"
           VERSION="${{ steps.version.outputs.version }}"
-          docker build -t "${IMAGE}:${VERSION}" -t "${IMAGE}:latest" -f docker/Dockerfile docker/
+          docker build -t "${IMAGE}:${VERSION}" -t "${IMAGE}:latest" .
           docker push "${IMAGE}:${VERSION}"
           docker push "${IMAGE}:latest"
           echo "Pushed: ${IMAGE}:${VERSION}" >> $GITHUB_STEP_SUMMARY
